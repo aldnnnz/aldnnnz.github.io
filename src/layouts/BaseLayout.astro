@@ -1,0 +1,126 @@
+---
+import '../styles/global.css';
+import { ModeWatcher } from "mode-watcher";
+import ThemeToggle from '../components/ThemeToggle.svelte';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { title = 'Portfolio', description = 'Welcome to my portfolio' } = Astro.props;
+---
+
+<script is:inline>
+  const isBrowser = typeof localStorage !== 'undefined';
+  const getThemePreference = () => {
+    if (isBrowser && localStorage.getItem('theme')) {
+      return localStorage.getItem('theme');
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark' : 'light';
+  };
+  const isDark = getThemePreference() === 'dark';
+  document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+ 
+  if (isBrowser) {
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+  }
+</script>
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<title>{title}</title>
+	</head>
+	<body class="flex flex-col min-h-screen">
+		<ModeWatcher client:load />
+		<!-- Header -->
+		<header class="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			<nav class="container mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-6">
+				<div class="flex items-center gap-8">
+					<a href="/" class="font-bold text-xl text-foreground hover:text-primary transition-colors">
+						Portfolio
+					</a>
+					<div class="hidden md:flex items-center gap-6">
+						<a href="#projects" class="text-sm text-foreground/70 hover:text-foreground transition-colors">
+							Projects
+						</a>
+						<a href="#about" class="text-sm text-foreground/70 hover:text-foreground transition-colors">
+							About
+						</a>
+						<a href="#contact" class="text-sm text-foreground/70 hover:text-foreground transition-colors">
+							Contact
+						</a>
+					</div>
+				</div>
+				<div class="flex items-center gap-4">
+					<ThemeToggle client:load />
+					<button class="md:hidden text-foreground">
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+						</svg>
+					</button>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Main Content -->
+		<main class="flex-1">
+			<slot />
+		</main>
+
+		<!-- Footer -->
+		<footer class="border-t border-border bg-card">
+			<div class="container mx-auto max-w-7xl px-4 md:px-6 py-8">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+					<!-- Brand Section -->
+					<div class="space-y-4">
+						<h3 class="font-bold text-foreground">Portfolio</h3>
+						<p class="text-sm text-foreground/70">
+							Built with Astro, Svelte, and Tailwind CSS.
+						</p>
+					</div>
+
+					<!-- Links Section -->
+					<div class="space-y-4">
+						<h4 class="font-semibold text-foreground">Navigation</h4>
+						<ul class="space-y-2 text-sm">
+							<li><a href="#projects" class="text-foreground/70 hover:text-foreground transition-colors">Projects</a></li>
+							<li><a href="#about" class="text-foreground/70 hover:text-foreground transition-colors">About</a></li>
+							<li><a href="#contact" class="text-foreground/70 hover:text-foreground transition-colors">Contact</a></li>
+						</ul>
+					</div>
+
+					<!-- Social Section -->
+					<div class="space-y-4">
+						<h4 class="font-semibold text-foreground">Connect</h4>
+						<ul class="space-y-2 text-sm">
+							<li><a href="#" class="text-foreground/70 hover:text-foreground transition-colors">GitHub</a></li>
+							<li><a href="#" class="text-foreground/70 hover:text-foreground transition-colors">Twitter</a></li>
+							<li><a href="#" class="text-foreground/70 hover:text-foreground transition-colors">LinkedIn</a></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Divider -->
+				<div class="border-t border-border pt-8">
+					<p class="text-sm text-foreground/50 text-center">
+						&copy; 2026 Portfolio. All rights reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

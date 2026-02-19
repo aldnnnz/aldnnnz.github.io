@@ -10,6 +10,11 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      fontFamily: {
+        instrument: ['Instrument', 'sans-serif'],
+        playfair: ['Playfair', 'serif'],
+        anonymous: ['Anonymous', 'monospace'],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

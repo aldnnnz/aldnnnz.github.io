@@ -1,0 +1,63 @@
+---
+import { Button } from '../ui/button';
+import ascii from '../../../assets/ascii-art.txt?raw';
+const { title, subtitle, image } = Astro.props;
+
+---
+<section class="min-h-screen snap-start flex items-center bg-[#111111] text-white overflow-hidden">
+  <div class="container mx-auto max-w-7xl px-6">
+    
+    <div class="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-20 items-start">
+      
+      <!-- LEFT -->
+      <div class="space-y-3 md:space-y-4">
+        
+        <h1 class="text-5xl md:text-7xl font-bold leading-[1] tracking-[-0.09em] font-instrument">
+          Muhammad Aldyn <br />
+          Ismail Putra
+        </h1>
+
+        <p class="text-xl font-instrument font-medium tracking-tighter text-gray-400 max-w-xl">
+          Designing systems that 
+          <span class="font-playfair text-white"> scale, perform,</span> 
+          and 
+          <span class="font-playfair text-white">last.</span>
+        </p>
+
+        <div class="pt-10 space-y-6">
+          <p class="text-sm tracking-widest text-gray-400">
+            About Me
+          </p>
+
+          <p class="text-gray-500 max-w-md leading-relaxed text-sm">
+            6th-semester Computer Science student with a strong foundation in Backend Development and a growing expertise in DevOps and Infrastructure. Experienced in building Laravel-based systems with RESTful APIs and payment gateway integrations. A Linux enthusiast and proactive problem-solver, I excel at architecting scalable system solutions and collaborating in Agile/Scrum environments.
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT ASCII -->
+      <div class="relative flex flex-col justify-center items-center md:items-end gap-6">
+
+
+        <h3 class="text-lg font-anonymous text-white text-center md:text-right">
+          Focused on Backend Dev<br>
+          && System Architecture
+        </h3>
+        <!-- White bar -->
+        <div class="absolute inset-y-1/4 -left-20 -right-20 bg-white h-30 z-0"></div>
+
+        <!-- ASCII -->
+        <pre class="relative z-10 text-[4px] hover:text-orange-800 leading-[4px] md:text-[6px] md:leading-[6px] font-anonymous text-black mix-blend-darken ">
+{ascii}
+        </pre>
+
+        <h2 class=" text-white text-2xl underline hover:decoration-sky-500 font-anonymous text-center md:text-right text-underline" >
+          aldynnn@yahoo.com
+        </h2>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

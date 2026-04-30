@@ -1,94 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Button } from '$lib/components/ui/button';
+import Hero from '$lib/components/section/hero.astro';
 ---
 
 <BaseLayout title="Home | Portfolio" description="Welcome to my portfolio website">
 	<!-- Hero Section -->
-	<section class="container mx-auto max-w-7xl px-4 md:px-6 py-20 md:py-32">
-		<div class="space-y-6">
-			<div class="space-y-4">
-				<h1 class="text-4xl md:text-6xl font-bold text-foreground">
-					Hi, I'm Your Name
-				</h1>
-				<p class="text-lg md:text-xl text-foreground/70 max-w-2xl">
-					A passionate developer creating beautiful and functional web experiences. 
-					Welcome to my digital portfolio.
-				</p>
-			</div>
-			<div class="flex gap-4">
-				<Button>View My Work</Button>
-				<Button variant="outline">Get in Touch</Button>
-			</div>
-		</div>
-	</section>
+	<Hero/>
 
-	<!-- Projects Section -->
-	<section id="projects" class="border-t border-border bg-card/50">
-		<div class="container mx-auto max-w-7xl px-4 md:px-6 py-20">
-			<div class="space-y-12">
-				<div class="space-y-2">
-					<h2 class="text-3xl md:text-4xl font-bold text-foreground">Featured Projects</h2>
-					<p class="text-foreground/70">Some of my recent work</p>
-				</div>
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					{[1, 2, 3, 4].map((i) => (
-						<div key={i} class="border border-border rounded-lg p-6 hover:bg-card/50 transition-colors">
-							<div class="w-full h-48 bg-muted rounded-md mb-4"></div>
-							<h3 class="text-lg font-semibold text-foreground mb-2">Project {i}</h3>
-							<p class="text-foreground/70 text-sm mb-4">
-								Description of your amazing project goes here. Highlight the key features and technologies used.
-							</p>
-							<Button size="sm" variant="ghost">View Project →</Button>
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
-	</section>
 
-	<!-- About Section -->
-	<section id="about" class="container mx-auto max-w-7xl px-4 md:px-6 py-20">
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-			<div class="space-y-6">
-				<div class="space-y-2">
-					<h2 class="text-3xl md:text-4xl font-bold text-foreground">About Me</h2>
-					<p class="text-foreground/70">A bit more about who I am</p>
-				</div>
-				<p class="text-foreground/70 leading-relaxed">
-					I'm a developer with a passion for creating beautiful, functional web experiences. 
-					With expertise in modern web technologies like Astro, React, and Svelte, I help bring ideas to life.
-				</p>
-				<div class="space-y-3">
-					<div>
-						<h4 class="font-semibold text-foreground mb-2">Skills</h4>
-						<div class="flex flex-wrap gap-2">
-							{['Astro', 'Svelte', 'React', 'TypeScript', 'Tailwind CSS', 'Node.js'].map((skill) => (
-								<span key={skill} class="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm">
-									{skill}
-								</span>
-							))}
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="w-full h-96 bg-muted rounded-lg"></div>
-		</div>
-	</section>
-
-	<!-- Contact Section -->
-	<section id="contact" class="border-t border-border bg-card/50">
-		<div class="container mx-auto max-w-2xl px-4 md:px-6 py-20">
-			<div class="space-y-8 text-center">
-				<div class="space-y-2">
-					<h2 class="text-3xl md:text-4xl font-bold text-foreground">Let's Work Together</h2>
-					<p class="text-foreground/70">Get in touch and let me know how I can help</p>
-				</div>
-				<div class="flex flex-col sm:flex-row gap-4 justify-center">
-					<Button>Send an Email</Button>
-					<Button variant="outline">Schedule a Call</Button>
-				</div>
-			</div>
-		</div>
-	</section>
 </BaseLayout>
